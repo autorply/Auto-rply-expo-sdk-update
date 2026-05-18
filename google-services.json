@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "434296920823",
+    "project_id": "my-autorply-app",
+    "storage_bucket": "my-autorply-app.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:434296920823:android:05cee70badca033d1051f2",
+        "android_client_info": {
+          "package_name": "com.autorply"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBTdMxcswuO8Oyiso9IOxO91X-UtrnEksU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
