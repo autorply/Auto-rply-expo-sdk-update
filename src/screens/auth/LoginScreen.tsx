@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
-import { Animated, Image, Pressable, StatusBar, TextInput, View } from 'react-native';
+import { Animated, I18nManager, Image, Pressable, StatusBar, TextInput, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import {
   BottomSheetModal,
@@ -68,6 +68,7 @@ const LoginScreen = () => {
   const installationUrl = useAppSelector(selectInstallationUrl);
   const baseUrl = useAppSelector(selectBaseUrl);
   const activeLocale = useAppSelector(selectLocale);
+  const isRTL = activeLocale === 'ar' || I18nManager.isRTL;
 
   useEffect(() => {
     languagesModalSheetRef.current?.dismiss({
@@ -147,7 +148,8 @@ const LoginScreen = () => {
       <View style={tailwind.style('flex-1 bg-white')}>
         <Animated.ScrollView
           showsVerticalScrollIndicator={false}
-          contentContainerStyle={tailwind.style('px-6 pt-24')}>
+          contentContainerStyle={tailwind.style('px-6 pt-24')}
+        >
           <Image
             // eslint-disable-next-line @typescript-eslint/no-var-requires, @typescript-eslint/no-require-imports
             source={require('@/assets/images/logo.png')}
@@ -155,13 +157,20 @@ const LoginScreen = () => {
             resizeMode="contain"
           />
           <View style={tailwind.style('pt-6 gap-4')}>
-            <Animated.Text style={tailwind.style('text-2xl text-gray-950 font-inter-semibold-20')}>
+            <Animated.Text
+              style={tailwind.style(
+                'text-2xl text-gray-950 font-inter-semibold-20',
+                isRTL ? 'text-right' : 'text-left',
+              )}
+            >
               {i18n.t('LOGIN.TITLE')}
             </Animated.Text>
             <Animated.Text
               style={tailwind.style(
                 'font-inter-normal-20 leading-[18px] tracking-[0.32px] text-gray-900',
-              )}>
+                isRTL ? 'text-right' : 'text-left',
+              )}
+            >
               {i18n.t('LOGIN.DESCRIPTION', { baseUrl })}
             </Animated.Text>
           </View>
@@ -177,10 +186,12 @@ const LoginScreen = () => {
                 style={tailwind.style('mt-8')}
               />
 
-              <View style={tailwind.style('flex-row items-center my-6')}>
+              <View
+                style={tailwind.style('items-center my-6', isRTL ? 'flex-row-reverse' : 'flex-row')}
+              >
                 <View style={tailwind.style('flex-1 h-px bg-gray-300')} />
                 <Animated.Text style={tailwind.style('px-4 text-sm text-gray-600')}>
-                  OR
+                  {i18n.t('LOGIN.OR')}
                 </Animated.Text>
                 <View style={tailwind.style('flex-1 h-px bg-gray-300')} />
               </View>
@@ -207,6 +218,7 @@ const LoginScreen = () => {
                       'text-base font-inter-normal-20 tracking-[0.24px] leading-[20px] android:leading-[18px]',
                       'py-2 px-3 rounded-xl text-gray-950 bg-blackA-A4',
                       'h-10',
+                      isRTL ? 'text-right' : 'text-left',
                     ),
                   ]}
                   onBlur={onBlur}
@@ -247,6 +259,7 @@ const LoginScreen = () => {
                         'text-base font-inter-normal-20 tracking-[0.24px] leading-[20px] android:leading-[18px]',
                         'py-2 pl-3 pr-10 rounded-xl text-gray-950 bg-blackA-A4',
                         'h-10',
+                        isRTL ? 'text-right' : 'text-left',
                       ),
                     ]}
                     onBlur={onBlur}
@@ -256,8 +269,9 @@ const LoginScreen = () => {
                     secureTextEntry={!showPassword}
                   />
                   <Pressable
-                    style={tailwind.style('absolute right-4 top-2.5')}
-                    onPress={() => setShowPassword(!showPassword)}>
+                    style={tailwind.style('absolute top-2.5', isRTL ? 'left-4' : 'right-4')}
+                    onPress={() => setShowPassword(!showPassword)}
+                  >
                     <Icon size={20} icon={showPassword ? <EyeIcon /> : <EyeSlash />} />
                   </Pressable>
                 </View>
@@ -272,7 +286,12 @@ const LoginScreen = () => {
           />
 
           <Pressable style={tailwind.style('pt-1 mb-8')} onPress={openResetPassword}>
-            <Animated.Text style={tailwind.style('text-blue-800 font-inter-medium-24 text-right')}>
+            <Animated.Text
+              style={tailwind.style(
+                'text-blue-800 font-inter-medium-24',
+                isRTL ? 'text-right' : 'text-left',
+              )}
+            >
               {i18n.t('LOGIN.FORGOT_PASSWORD')}
             </Animated.Text>
           </Pressable>
@@ -284,14 +303,16 @@ const LoginScreen = () => {
 
           <Pressable
             style={tailwind.style('flex-row justify-center items-center mt-6')}
-            onPress={openConfigInstallationURL}>
+            onPress={openConfigInstallationURL}
+          >
             <Animated.Text style={tailwind.style('text-sm text-gray-900')}>
               {i18n.t('LOGIN.CHANGE_URL')}
             </Animated.Text>
           </Pressable>
           <Pressable
             style={tailwind.style('flex-row justify-center items-center mt-4')}
-            onPress={() => languagesModalSheetRef.current?.present()}>
+            onPress={() => languagesModalSheetRef.current?.present()}
+          >
             <Animated.Text style={tailwind.style('text-sm text-gray-900')}>
               {i18n.t('LOGIN.CHANGE_LANGUAGE')}
             </Animated.Text>
@@ -307,7 +328,8 @@ const LoginScreen = () => {
         animationConfigs={animationConfigs}
         handleStyle={tailwind.style('p-0 h-4 pt-[5px]')}
         style={tailwind.style('rounded-[26px] overflow-hidden')}
-        snapPoints={['70%']}>
+        snapPoints={['70%']}
+      >
         <BottomSheetScrollView showsVerticalScrollIndicator={false}>
           <BottomSheetHeader headerText={i18n.t('SETTINGS.SET_LANGUAGE')} />
           <LanguageList onChangeLanguage={onChangeLanguage} currentLanguage={activeLocale} />

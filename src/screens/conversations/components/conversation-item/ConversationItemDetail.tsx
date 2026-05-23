@@ -1,6 +1,6 @@
 /* eslint-disable react/display-name */
 import React, { memo, useState } from 'react';
-import { Dimensions, ImageURISource, Text } from 'react-native';
+import { Dimensions, I18nManager, ImageURISource, Text } from 'react-native';
 import { LinearTransition } from 'react-native-reanimated';
 import { isEqual } from 'lodash';
 
@@ -72,6 +72,7 @@ export const ConversationItemDetail = memo((props: ConversationDetailSubCellProp
   } = props;
 
   const [shouldShowSLA, setShouldShowSLA] = useState(true);
+  const isRTL = I18nManager.isRTL;
 
   const hasPriority = priority !== null;
 
@@ -88,12 +89,20 @@ export const ConversationItemDetail = memo((props: ConversationDetailSubCellProp
       layout={LinearTransition.springify().damping(28).stiffness(200)}
       style={tailwind.style('flex-1 gap-1 py-3 border-b-[1px] border-b-blackA-A3')}>
       <AnimatedNativeView
-        style={tailwind.style('flex flex-row justify-between items-center h-[24px]')}>
-        <AnimatedNativeView style={tailwind.style('flex flex-row items-center h-[24px] gap-[5px]')}>
+        style={tailwind.style(
+          'flex justify-between items-center min-h-[26px]',
+          isRTL ? 'flex-row-reverse' : 'flex-row',
+        )}>
+        <AnimatedNativeView
+          style={tailwind.style(
+            'flex items-center gap-[5px] flex-1',
+            isRTL ? 'flex-row-reverse justify-end' : 'flex-row',
+          )}>
           <Text
             numberOfLines={1}
             style={tailwind.style(
-              'text-base font-inter-medium-24 tracking-[0.24px] text-gray-950 capitalize',
+              'text-base font-inter-medium-24 tracking-[0.24px] leading-[24px] text-gray-950 capitalize',
+              isRTL ? 'text-right' : 'text-left',
               // Calculated based on the widths of other content,
               // We might have to do a 10-20px offset based on the max width of the timestamp
               `max-w-[${width - 250}px]`,
@@ -102,7 +111,11 @@ export const ConversationItemDetail = memo((props: ConversationDetailSubCellProp
           </Text>
           <ConversationId id={conversationId} />
         </AnimatedNativeView>
-        <AnimatedNativeView style={tailwind.style('flex flex-row items-center gap-2')}>
+        <AnimatedNativeView
+          style={tailwind.style(
+            'flex items-center gap-2',
+            isRTL ? 'flex-row-reverse' : 'flex-row',
+          )}>
           {hasPriority ? <PriorityIndicator {...{ priority }} /> : null}
           {inbox && <ChannelIndicator inbox={inbox} additionalAttributes={additionalAttributes} />}
           <LastActivityTime timestamp={timestamp} />

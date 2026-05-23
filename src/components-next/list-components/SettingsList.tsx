@@ -1,5 +1,5 @@
 import React from 'react';
-import { Pressable, StyleSheet, Platform } from 'react-native';
+import { I18nManager, Platform, Pressable, StyleSheet } from 'react-native';
 import Animated from 'react-native-reanimated';
 
 import { CaretRight } from '@/svg-icons';
@@ -20,6 +20,7 @@ type ListItemProps = {
 
 const ListItem = (props: ListItemProps) => {
   const { listItem, index, isLastItem } = props;
+  const isRTL = I18nManager.isRTL;
 
   return (
     <Pressable
@@ -31,8 +32,14 @@ const ListItem = (props: ListItemProps) => {
           index === 0 ? 'rounded-t-[13px]' : '',
           isLastItem ? 'rounded-b-[13px]' : '',
         ),
-      ]}>
-      <Animated.View style={tailwind.style('flex flex-row items-center pl-3')}>
+      ]}
+    >
+      <Animated.View
+        style={tailwind.style(
+          'flex items-center pl-3',
+          isRTL ? 'flex-row-reverse pr-3 pl-0' : 'flex-row',
+        )}
+      >
         {listItem.icon ? (
           <Animated.View>
             <Icon icon={listItem.icon} size={24} />
@@ -40,27 +47,43 @@ const ListItem = (props: ListItemProps) => {
         ) : null}
         <Animated.View
           style={tailwind.style(
-            'flex-1 flex-row items-center justify-between py-[11px]',
-            listItem.icon ? 'ml-3' : '',
+            'flex-1 items-center justify-between py-[11px]',
+            isRTL ? 'flex-row-reverse' : 'flex-row',
+            listItem.icon ? (isRTL ? 'mr-3' : 'ml-3') : '',
             !isLastItem ? 'border-b-[1px] border-b-blackA-A3' : '',
-          )}>
-          <Animated.View>
+          )}
+        >
+          <Animated.View style={tailwind.style('flex-1')}>
             <Animated.Text
               style={tailwind.style(
                 'text-base font-inter-420-20 leading-[22px] tracking-[0.16px] text-gray-950',
-              )}>
+                isRTL ? 'text-right' : 'text-left',
+              )}
+            >
               {listItem.title}
             </Animated.Text>
           </Animated.View>
-          <Animated.View style={tailwind.style('flex flex-row items-center pr-3')}>
+          <Animated.View
+            style={tailwind.style(
+              'flex items-center pr-3 pl-2 max-w-[55%]',
+              isRTL ? 'flex-row-reverse pr-0 pl-3' : 'flex-row',
+            )}
+          >
             <Animated.Text
+              numberOfLines={1}
               style={tailwind.style(
-                'text-base font-inter-normal-20 leading-[22px] tracking-[0.16px]',
+                'text-base font-inter-normal-20 leading-[22px] tracking-[0.16px] flex-shrink',
                 listItem.subtitleType === 'light' ? 'text-gray-900' : 'text-gray-950',
-              )}>
+                isRTL ? 'text-left' : 'text-right',
+              )}
+            >
               {listItem.subtitle}
             </Animated.Text>
-            {listItem.hasChevron ? <Icon icon={<CaretRight />} size={20} /> : null}
+            {listItem.hasChevron ? (
+              <Animated.View style={isRTL ? ({ transform: [{ scaleX: -1 }] } as const) : undefined}>
+                <Icon icon={<CaretRight />} size={20} />
+              </Animated.View>
+            ) : null}
           </Animated.View>
         </Animated.View>
       </Animated.View>
@@ -78,7 +101,8 @@ export const SettingsList = (props: GenericListProps) => {
           <Animated.Text
             style={tailwind.style(
               'text-sm font-inter-medium-24 leading-[16px] tracking-[0.32px] text-gray-700',
-            )}>
+            )}
+          >
             {sectionTitle}
           </Animated.Text>
         </Animated.View>

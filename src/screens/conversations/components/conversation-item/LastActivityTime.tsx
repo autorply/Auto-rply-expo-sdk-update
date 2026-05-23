@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Text } from 'react-native';
+import { I18nManager, Text } from 'react-native';
 
 import { tailwind } from '@/theme';
 import { NativeView } from '@/components-next/native-components';
@@ -15,6 +15,7 @@ type LastActivityTimeProps = {
 };
 
 export const LastActivityTime = ({ timestamp }: LastActivityTimeProps) => {
+  const isRTL = I18nManager.isRTL;
   const [lastActivityTime, setLastActivityTime] = useState(
     formatTimeToShortForm(formatRelativeTime(timestamp)),
   );
@@ -46,6 +47,7 @@ export const LastActivityTime = ({ timestamp }: LastActivityTimeProps) => {
       <Text
         style={tailwind.style(
           'text-sm font-inter-420-20 leading-[16px] tracking-[0.32px] text-gray-700',
+          isRTL ? 'text-left' : 'text-right',
         )}>
         {lastActivityTime}
       </Text>

@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { StatusBar, Text, Platform, Pressable } from 'react-native';
+import { I18nManager, Platform, Pressable, StatusBar, Text } from 'react-native';
 import Animated from 'react-native-reanimated';
 // import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -74,6 +74,7 @@ const appVersion = Application.nativeApplicationVersion;
 
 const buildNumber = Application.nativeBuildVersion;
 const appVersionDetails = buildNumber ? `${appVersion} (${buildNumber})` : appVersion;
+const SUPPORT_CHAT_URL = 'https://autorply.sa/chat/';
 
 const SettingsScreen = () => {
   const navigation = useNavigation();
@@ -99,7 +100,7 @@ const SettingsScreen = () => {
 
   const pushToken = useAppSelector(selectPushToken);
 
-  const userPermissions = getUserPermissions(user, activeAccountId);
+  const userPermissions = user ? getUserPermissions(user, activeAccountId ?? null) : [];
 
   const hasConversationPermission = CONVERSATION_PERMISSIONS.some(permission =>
     userPermissions.includes(permission),
@@ -135,6 +136,7 @@ const SettingsScreen = () => {
   const enableAccountSwitch = accounts.length > 1;
 
   const activeLocale = useSelector(selectLocale);
+  const isRTL = activeLocale === 'ar' || I18nManager.isRTL;
   const {
     userAvailabilityStatusSheetRef,
     languagesModalSheetRef,
@@ -197,6 +199,10 @@ const SettingsScreen = () => {
 
   const openURL = async () => {
     await WebBrowser.openBrowserAsync(HELP_URL);
+  };
+
+  const openSupportChat = async () => {
+    await WebBrowser.openBrowserAsync(SUPPORT_CHAT_URL);
   };
 
   // const openSystemSettings = () => {
@@ -270,7 +276,7 @@ const SettingsScreen = () => {
       icon: <ChatwootIcon />,
       subtitle: '',
       subtitleType: 'light',
-      onPressListItem: () => toggleWidget(true),
+      onPressListItem: openSupportChat,
     },
   ];
 
@@ -298,8 +304,10 @@ const SettingsScreen = () => {
               {name}
             </Animated.Text>
             <Animated.Text
+              numberOfLines={1}
               style={tailwind.style(
-                'text-[15px] font-inter-420-20 leading-[17.25px] text-gray-900',
+                'text-[15px] font-inter-420-20 leading-[20px] text-gray-900 max-w-[90%]',
+                isRTL ? 'text-right' : 'text-left',
               )}>
               {email}
             </Animated.Text>

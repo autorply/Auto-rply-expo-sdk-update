@@ -14,7 +14,7 @@
   },
   "CONFIGURE_URL": {
     "ENTER_URL": "رابط التثبيت",
-    "DESCRIPTION": "إذا كنت تستضيف الموقع بشكل ذاتي الرجاء إدخال URL الخاص بخادمك.",
+    "DESCRIPTION": "إذا كنت تستضيف المنصة بشكل ذاتي، الرجاء إدخال رابط الخادم الخاص بك.",
     "URL_ERROR": "الرجاء إدخال عنوان صحيح",
     "URL_REQUIRED": "الرابط مطلوب",
     "CONNECT": "اتصل",
@@ -22,8 +22,8 @@
     "ERROR": "رابط التثبيت غير صحيح"
   },
   "LOGIN": {
-    "TITLE": "Log in to your account",
-    "DESCRIPTION": "You are connected to {{baseUrl}}.",
+    "TITLE": "تسجيل الدخول إلى حسابك",
+    "DESCRIPTION": "أنت متصل بـ {{baseUrl}}.",
     "EMAIL": "البريد الإلكتروني",
     "PASSWORD": "كلمة المرور",
     "EMAIL_REQUIRED": "البريد الإلكتروني مطلوب",
@@ -31,7 +31,9 @@
     "PASSWORD_REQUIRED": "كلمة المرور مطلوبة",
     "PASSWORD_ERROR": "أدخل كلمة مرور صالحة",
     "LOGIN": "تسجيل الدخول",
-    "LOGIN_LOADING": "Signing In...",
+    "LOGIN_LOADING": "جارٍ تسجيل الدخول...",
+    "LOGIN_VIA_SSO": "تسجيل الدخول عبر SSO",
+    "OR": "أو",
     "FORGOT_PASSWORD": "نسيت كلمة المرور؟",
     "RESET_HERE": "إعادة تعيين من هنا",
     "NO_ACCOUNT": "ليس لديك حساب؟",
@@ -261,7 +263,7 @@
   "SETTINGS": {
     "HEADER_TITLE": "الإعدادات",
     "SET_AVAILABILITY": "تعيين نفسك كـ",
-    "CHANGE_AVAILABILITY": "Set availability",
+    "CHANGE_AVAILABILITY": "تعيين حالة التوفر",
     "PREFERENCES": "التفضيلات",
     "ABOUT": "حول",
     "SUPPORT": "الدعم",
@@ -269,11 +271,11 @@
     "CHANGE_LANGUAGE": "تغيير اللغة",
     "NOTIFICATIONS": "الإشعارات",
     "NOTIFICATION_PREFERENCES": "تفضيلات الإشعارات",
-    "READ_DOCS": "Read Docs",
-    "CHAT_WITH_US": "تحدث الينا",
+    "READ_DOCS": "اقرأ التوثيق",
+    "CHAT_WITH_US": "تحدث إلينا",
     "LOGOUT": "تسجيل الخروج",
     "SUBMIT": "إرسال",
-    "SET_LANGUAGE": "Set Language",
+    "SET_LANGUAGE": "اختيار اللغة",
     "DEBUG_ACTIONS": "Debug Actions"
   },
   "NOTIFICATION": {
@@ -399,19 +401,19 @@
     "CHANGE_TEAMS": "تم تغيير فريق المحادثة"
   },
   "ERRORS": {
-    "COMMON_ERROR": "Could not connect to Chatwoot Server, Please try again later",
+    "COMMON_ERROR": "تعذر الاتصال بخادم Autorply، يرجى المحاولة لاحقًا",
     "OfFLINE": "يجب عليك التوصيل بشبكة Wi-Fi، أو بشبكة البيانات للاتصال مجدداً",
     "CANNOT_FETCH": "حدث خطأ أثناء جلب المعلومات، الرجاء المحاولة مرة أخرى",
     "AUTH": "اسم المستخدم / كلمة المرور غير صحيحة. الرجاء المحاولة مرة أخرى",
-    "NO_ACCOUNTS_MESSAGE": "ليس لديك حق الوصول إلى أي حسابات في Chatwoot"
+    "NO_ACCOUNTS_MESSAGE": "ليس لديك صلاحية للوصول إلى أي حسابات Autorply"
   },
   "SUCCESS": {
     "AUTH": "تم تسجيل الدخول بنجاح"
   },
   "SERVER_UPGRADE": {
     "TITLE": "يجب ترقية الخادم",
-    "WARNING_FOR_AGENT": "يبدو أنك تستخدم خادم Chatwoot غير مدعوم لتطبيق الجوال الخاص بك، الرجاء الاتصال بالمشرف لترقية خادم Chatwoot الخاص بك.",
-    "WARNING_FOR_ADMIN": "يبدو أنك تستخدم خادم Chatwoot غير مدعوم لتطبيق الجوال الخاص بك، الرجاء الترقية إلى الإصدار %{minimumVersion} أو أحدث نسخة مطلوبة."
+    "WARNING_FOR_AGENT": "يبدو أنك تستخدم خادم Autorply غير مدعوم لتطبيق الجوال. يرجى التواصل مع المسؤول لترقية الخادم.",
+    "WARNING_FOR_ADMIN": "يبدو أنك تستخدم خادم Autorply غير مدعوم لتطبيق الجوال. الرجاء الترقية إلى الإصدار %{minimumVersion} أو أحدث."
   },
   "EXIT": {
     "TITLE": "خروج",

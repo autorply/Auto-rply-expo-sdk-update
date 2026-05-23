@@ -1,6 +1,6 @@
 /* eslint-disable react/display-name */
 import React, { memo } from 'react';
-import { ImageURISource } from 'react-native';
+import { I18nManager, ImageURISource } from 'react-native';
 
 import { NativeView } from '@/components-next/native-components';
 import { tailwind } from '@/theme';
@@ -83,9 +83,16 @@ export const ConversationItem = memo(
     allLabels,
     typingText,
   }: ConversationItemProps) => {
+    const isRTL = I18nManager.isRTL;
+
     return (
-      <NativeView style={tailwind.style('px-3 gap-3 flex-row justify-between')}>
-        <NativeView style={tailwind.style('py-3 flex flex-row')}>
+      <NativeView
+        style={tailwind.style(
+          'px-3 gap-3 justify-between',
+          isRTL ? 'flex-row-reverse' : 'flex-row',
+        )}
+      >
+        <NativeView style={tailwind.style('py-3 flex', isRTL ? 'flex-row-reverse' : 'flex-row')}>
           <ConversationSelect {...{ isSelected, currentState }} />
           <ConversationAvatar
             src={{ uri: senderThumbnail } as ImageURISource}
