@@ -1,5 +1,5 @@
-import React, { useCallback, useRef } from 'react';
-import { ActivityIndicator, Linking, StyleSheet, View } from 'react-native';
+import React, { useCallback, useEffect, useRef } from 'react';
+import { ActivityIndicator, I18nManager, Linking, StyleSheet, View } from 'react-native';
 import messaging from '@react-native-firebase/messaging';
 import { getStateFromPath } from '@react-navigation/native';
 import { KeyboardProvider } from 'react-native-keyboard-controller';
@@ -174,6 +174,14 @@ export const AppNavigationContainer = () => {
   };
 
   i18n.locale = locale;
+
+  useEffect(() => {
+    const isArabic = locale === 'ar';
+    I18nManager.allowRTL(true);
+    if (I18nManager.isRTL !== isArabic) {
+      I18nManager.forceRTL(isArabic);
+    }
+  }, [locale]);
 
   const onLayoutRootView = useCallback(async () => {
     if (fontsLoaded) {
