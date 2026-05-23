@@ -12,6 +12,7 @@ import * as ContextMenu from 'zeego/context-menu';
 
 import { tailwind } from '@/theme';
 import { BottomSheetHeader, BottomSheetWrapper, Icon } from '@/components-next/common';
+import i18n from '@/i18n';
 
 export type MenuOption = {
   title: string;
@@ -126,7 +127,7 @@ export const MessageMenu = (props: PropsWithChildren<MessageMenuProps>) => {
           snapPoints={[menuOptions.length * 44 + 4 + 37]}
           onDismiss={handleOnDismiss}>
           <BottomSheetWrapper>
-            <BottomSheetHeader headerText="Select action" />
+            <BottomSheetHeader headerText={i18n.t('CONVERSATION_ACTION.SELECT_ACTION')} />
             <Animated.View style={tailwind.style('py-1 pl-3')}>
               {menuOptions?.map((option, index) => {
                 return (

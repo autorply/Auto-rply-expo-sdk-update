@@ -4,7 +4,12 @@
     "ERROR": "خطأ",
     "ERROR_TITLE": "حدث خطأ غير متوقع",
     "REPORT_MESSAGE": "لقد تم إبلاغ فريقنا بهذا الأمر! الرجاء إغلاق التطبيق وفتحه مرة أخرى!",
-    "CLOSE": "إغلاق"
+    "CLOSE": "إغلاق",
+    "OK": "موافق",
+    "CANCEL": "إلغاء",
+    "OPEN_SETTINGS": "فتح الإعدادات",
+    "PERMISSION_DENIED": "تم رفض الإذن",
+    "COPIED_TO_CLIPBOARD": "تم نسخ {{label}} إلى الحافظة"
   },
   "FOOTER": {
     "HOME": "الرئيسية",
@@ -33,6 +38,9 @@
     "LOGIN": "تسجيل الدخول",
     "LOGIN_LOADING": "جارٍ تسجيل الدخول...",
     "LOGIN_VIA_SSO": "تسجيل الدخول عبر SSO",
+    "SSO_AUTH_FAILED": "فشل تسجيل الدخول عبر SSO. يرجى التحقق من بياناتك والمحاولة مرة أخرى.",
+    "SSO_INVALID_RESPONSE": "استجابة SSO غير صالحة. يرجى المحاولة مرة أخرى.",
+    "SSO_UNEXPECTED_ERROR": "حدث خطأ غير متوقع أثناء تسجيل الدخول عبر SSO. يرجى المحاولة مرة أخرى.",
     "OR": "أو",
     "FORGOT_PASSWORD": "نسيت كلمة المرور؟",
     "RESET_HERE": "إعادة تعيين من هنا",
@@ -41,7 +49,25 @@
     "SETTINGS": "الإعدادات",
     "CHANGE_LANGUAGE": "تغيير اللغة",
     "TERMS": "الشروط والأحكام",
-    "CHANGE_URL": "تغيير عنوان URL"
+    "CHANGE_URL": "تغيير الرابط"
+  },
+  "MFA": {
+    "TITLE": "التحقق بخطوتين",
+    "TABS": {
+      "AUTHENTICATOR_APP": "تطبيق المصادقة",
+      "BACKUP_CODE": "رمز احتياطي"
+    },
+    "INSTRUCTIONS": {
+      "AUTHENTICATOR": "أدخل الرمز المكون من 6 أرقام من تطبيق المصادقة",
+      "BACKUP": "أدخل أحد الرموز الاحتياطية"
+    },
+    "PLACEHOLDERS": {
+      "BACKUP_CODE": "أدخل الرمز الاحتياطي"
+    },
+    "BUTTONS": {
+      "VERIFY": "تحقق",
+      "VERIFYING": "جارٍ التحقق..."
+    }
   },
   "FORGOT_PASSWORD": {
     "EMAIL": "الرجاء إدخال بريدك الإلكتروني",
@@ -67,13 +93,13 @@
       "SORT_BY": {
         "TITLE": "ترتيب حسب",
         "OPTIONS": {
-          "LATEST": "Latest",
+          "LATEST": "الأحدث",
           "SORT_ON_CREATED_AT": "تم إنشاؤها في",
           "SORT_ON_PRIORITY": "الأولوية"
         }
       },
       "STATUS": {
-        "TITLE": "Filter by status",
+        "TITLE": "التصفية حسب الحالة",
         "OPTIONS": {
           "OPEN": "فتح",
           "PENDING": "قيد الانتظار",
@@ -85,7 +111,7 @@
       "ASSIGNEE_TYPE": {
         "TITLE": "تصفية حسب التعيين",
         "OPTIONS": {
-          "ME": "Me",
+          "ME": "أنا",
           "UNASSIGNED": "غير مسند",
           "ALL": "الكل"
         }
@@ -99,8 +125,8 @@
         "SEARCH_AGENT": "البحث عن وكلاء"
       },
       "STATUS": {
-        "HEADER_TITLE": "Assign status",
-        "TITLE": "Filter by status",
+        "HEADER_TITLE": "تعيين الحالة",
+        "TITLE": "التصفية حسب الحالة",
         "OPTIONS": {
           "OPEN": "فتح",
           "PENDING": "قيد الانتظار",
@@ -126,24 +152,42 @@
     "ALL_CONVERSATION_LOADED": "تم تحميل كافة المحادثات",
     "ASSIGN": "تعيين المحادثة",
     "FILE_SIZE_LIMIT": "الملف يتجاوز الحجم المسموح - 5 ميغابايت",
+    "REFRESHED": "تم تحديث المحادثة",
+    "ACTIONS_TITLE": "إجراءات المحادثة",
+    "MENU_TITLE": "اختر إجراءً",
+    "MARK_AS_OPEN": "إعادة فتح المحادثة",
+    "EMAIL_PLACEHOLDER": "افصل بين عناوين البريد بفواصل",
+    "FILE_PREVIEW_ERROR": "تعذر معاينة الملف",
+    "FILE_LOAD_ERROR": "تعذر تحميل الملف",
+    "COMMAND_OPTIONS": {
+      "PHOTOS": "الصور",
+      "CAMERA": "الكاميرا",
+      "ATTACH_FILE": "إرفاق ملف",
+      "MACROS": "الماكرو"
+    },
+    "PERMISSION": {
+      "PHOTO_LIBRARY_DENIED": "تم رفض إذن الوصول إلى الصور. فعّل الإذن من إعدادات الجهاز.",
+      "CAMERA_DENIED": "تم رفض إذن الوصول إلى الكاميرا. فعّل الإذن من إعدادات الجهاز."
+    },
     "SHARE": "مشاركة",
     "DETAILS": "التفاصيل",
     "LABELS": "وسوم المحادثة",
     "ASSIGNED_AGENT": "الوكيل المكلف",
     "TEAM": "الفريق",
     "PRIVATE_MSG_INPUT": "سيكون هذا مرئيًا فقط للوكلاء",
-    "UNSUPPORTED_MESSAGE": "This message is unsupported. You can view this message on the Facebook / Instagram app.",
+    "UNSUPPORTED_MESSAGE": "هذه الرسالة غير مدعومة. يمكنك عرضها عبر تطبيق Facebook أو Instagram.",
     "NOT_FOUND": {
-      "TITLE": "Unable to fetch conversation",
-      "RETRY": "Retry",
-      "BACK_TO_HOME": "Go back to home",
-      "DESCRIPTION": "It seems like that conversation is not able fetch properly. It could be due to a network issue or the conversation is not available anymore. Please click on the retry button to try again."
+      "TITLE": "تعذر جلب المحادثة",
+      "RETRY": "إعادة المحاولة",
+      "BACK_TO_HOME": "العودة إلى الرئيسية",
+      "DESCRIPTION": "تعذر تحميل هذه المحادثة بشكل صحيح. قد يكون السبب مشكلة في الشبكة أو أن المحادثة لم تعد متاحة. اضغط إعادة المحاولة."
     },
     "BOT": "الروبوت",
     "EMAIL_HEAD": {
       "TO": "إلى",
       "CC": "نسخة من البريد",
-      "BCC": "نسخة خفية من البريد"
+      "BCC": "نسخة خفية من البريد",
+      "PLACEHOLDER": "افصل بين عناوين البريد بفواصل"
     },
     "SELF_ASSIGN": "إسناد إلي",
     "UN_ASSIGN": "الغاء تعيين المحادثة",
@@ -158,17 +202,18 @@
     "MESSAGES": "الرسائل",
     "UNDEFINED_VARIABLES_TITLE": "متغيرات غير معرفة",
     "UNDEFINED_VARIABLES_CLOSE": "إغلاق",
+    "UNDEFINED_VARIABLES_MESSAGE": "لديك %{count} متغير(ات) غير معرّفة في رسالتك: %{variables}. يرجى المراجعة والمحاولة مرة أخرى باستخدام متغيرات صحيحة.",
     "DELETE_MESSAGE_TITLE": "هل أنت متأكد من أنك تريد حذف هذه الرسالة؟",
     "DELETE_MESSAGE_SUB_TITLE": "لا يمكن التراجع عن هذا الإجراء.",
     "COPY_MESSAGE": "تم نسخ الرسالة إلى الحافظة",
-    "STORY_NOT_AVAILABLE": "This story is no longer available",
+    "STORY_NOT_AVAILABLE": "هذه القصة لم تعد متاحة",
     "DELETE_MESSAGE_SUCCESS": "تم حذف الرسالة بنجاح",
     "NO_CONTENT": "لم يتم العثور على محتوى",
     "ASSIGN_CHANGE": "تم تغيير الوكيل الذي تم إحالة المحادثة إليه",
-    "TEAM_CHANGE": "Conversation Team changed",
-    "STATUS_CHANGE": "Conversation Status changed",
-    "PRIORITY_CHANGE": "Conversation Priority changed",
-    "PARTICIPANT_CHANGE": "Conversation Participant changed",
+    "TEAM_CHANGE": "تم تغيير فريق المحادثة",
+    "STATUS_CHANGE": "تم تغيير حالة المحادثة",
+    "PRIORITY_CHANGE": "تم تغيير أولوية المحادثة",
+    "PARTICIPANT_CHANGE": "تم تغيير المشاركين في المحادثة",
     "CHANGE_STATUS": "تغيير الحالة",
     "SEARCH_TEAM": "البحث عن فريق",
     "PRIORITY": {
@@ -212,21 +257,26 @@
         "CONTENT": "قام بمشاركة رابط"
       },
       "contact": {
-        "CONTENT": "Shared a contact"
+        "CONTENT": "تمت مشاركة جهة اتصال"
       }
     },
     "LONG_PRESS_ACTIONS": {
       "COPY": "نسخ",
       "REPLY": "إضافة رد",
-      "DELETE_MESSAGE": "Delete message"
+      "DELETE_MESSAGE": "حذف الرسالة",
+      "TRANSLATE": "ترجمة"
     },
+    "TRANSLATE_SUCCESS": "تمت ترجمة الرسالة",
+    "TRANSLATE_ERROR": "فشل ترجمة الرسالة",
+    "VIEW_ORIGINAL": "عرض النص الأصلي",
+    "VIEW_TRANSLATED": "عرض الترجمة",
     "EMAIL_HEADER": {
       "FROM": "من",
       "TO": "إلى",
       "BCC": "نسخة خفية من البريد",
       "CC": "نسخة من البريد",
       "SUBJECT": "الموضوع",
-      "EXPAND": "Expand email"
+      "EXPAND": "توسيع البريد"
     },
     "ACTIONS": {
       "ASSIGNEE": {
@@ -235,11 +285,11 @@
         "EDIT": "تعديل"
       },
       "TEAM": {
-        "EMPTY": "No team assigned",
+        "EMPTY": "لا يوجد فريق معين",
         "ASSIGN": "تكليف"
       },
       "PRIORITY": {
-        "EMPTY": "No priority added",
+        "EMPTY": "لا توجد أولوية مضافة",
         "EDIT": "تعديل"
       }
     }
@@ -276,7 +326,7 @@
     "LOGOUT": "تسجيل الخروج",
     "SUBMIT": "إرسال",
     "SET_LANGUAGE": "اختيار اللغة",
-    "DEBUG_ACTIONS": "Debug Actions"
+    "DEBUG_ACTIONS": "إجراءات التصحيح"
   },
   "NOTIFICATION": {
     "HEADER_TITLE": "الإشعارات",
@@ -325,14 +375,14 @@
     "TITLE": "تفضيلات الإشعارات",
     "EMAIL": "إشعارات البريد الإلكتروني",
     "PUSH": "إشعارات المتصفح",
-    "CONVERSATION_CREATE_PUSH": "A new conversation is created",
-    "CONVERSATION_ASSIGNEE_PUSH": "A conversation is assigned to you",
-    "CONVERSATION_ASSIGNED_NEW_MESSAGE_PUSH": "You are mentioned in a conversation",
-    "CONVERSATION_MENTION": "A new message is created in an assigned conversation",
-    "CONVERSATION_PARTICIPATING_NEW_MESSAGE_PUSH": "A new message is created in a participating conversation",
-    "CONVERSATION_SLA_MISSED_FIRST_RESPONSE": "A conversation misses first response SLA",
-    "CONVERSATION_SLA_MISSED_NEXT_RESPONSE": "A conversation misses next response SLA",
-    "CONVERSATION_SLA_MISSED_RESOLUTION": "A conversation misses resolution SLA"
+    "CONVERSATION_CREATE_PUSH": "تم إنشاء محادثة جديدة",
+    "CONVERSATION_ASSIGNEE_PUSH": "تم تعيين محادثة لك",
+    "CONVERSATION_ASSIGNED_NEW_MESSAGE_PUSH": "تم ذكرك في محادثة",
+    "CONVERSATION_MENTION": "تم إنشاء رسالة جديدة في محادثة معينة لك",
+    "CONVERSATION_PARTICIPATING_NEW_MESSAGE_PUSH": "تم إنشاء رسالة جديدة في محادثة تشارك فيها",
+    "CONVERSATION_SLA_MISSED_FIRST_RESPONSE": "فشلت المحادثة في تحقيق هدف أول رد SLA",
+    "CONVERSATION_SLA_MISSED_NEXT_RESPONSE": "فشلت المحادثة في تحقيق هدف الرد التالي SLA",
+    "CONVERSATION_SLA_MISSED_RESOLUTION": "فشلت المحادثة في تحقيق هدف الحل SLA"
   },
   "CONVERSATION_DETAILS": {
     "TITLE": "السمات",
@@ -348,12 +398,21 @@
     "TITLE": "تفاصيل جهة الاتصال",
     "EMAIL": "البريد الإلكتروني",
     "PHONE_NUMBER": "رقم الهاتف",
-    "CALL": "Call",
+    "PHONE": "الهاتف",
+    "LOCATION": "الموقع",
+    "COMPANY": "الشركة",
+    "FACEBOOK": "فيسبوك",
+    "TWITTER": "إكس",
+    "GITHUB": "جيت هب",
+    "LINKEDIN": "لينكدإن",
+    "INSTAGRAM": "إنستغرام",
+    "TELEGRAM": "تيليجرام",
+    "CALL": "اتصال",
     "CONTACT_ATTRIBUTES": "سمات جهة الاتصال",
     "VALUE_UNAVAILABLE": "غير متوفر"
   },
   "CONVERSATION_PARTICIPANTS": {
-    "TITLE": "Participants",
+    "TITLE": "المشاركون",
     "TOTAL_PARTICIPANTS_TEXT": "%{count} شخص مشارك.",
     "TOTAL_PARTICIPANT_TEXT": "%{count} شخص مشارك.",
     "NO_PARTICIPANTS_TEXT": "لا أحد يشارك !.",
@@ -364,13 +423,14 @@
     "ADD_PARTICIPANTS": "اختر المشاركين",
     "REMAINING_PARTICIPANTS_TEXT": "الآخرين",
     "REMAINING_PARTICIPANT_TEXT": "آخر",
-    "ADD_PARTICIPANT": "Add Participant"
+    "ADD_PARTICIPANT": "إضافة مشارك"
   },
   "CONTACT_ATTRIBUTES": {
     "TITLE": "سمات جهة الاتصال"
   },
   "CONVERSATION_ACTION": {
-    "TITLE": "الإجراءات"
+    "TITLE": "الإجراءات",
+    "SELECT_ACTION": "اختر إجراءً"
   },
   "CONVERSATION_TEAMS": {
     "TITLE": "تعيين فريق",
@@ -449,12 +509,46 @@
   },
   "MACRO": {
     "TITLE": "ماكروس",
-    "SELECT_MACRO": "Select macro",
+    "SELECT_MACRO": "اختر ماكرو",
     "ACTIONS": {
-      "RUN": "Run"
+      "RUN": "تشغيل"
     },
     "EXECUTION_SUCCESS": "تم تنفيذ الماكرو بنجاح",
-    "EXECUTION_ERROR": "Macro execution failed",
+    "EXECUTION_ERROR": "فشل تنفيذ الماكرو",
     "NO_MACROS": "لم يتم العثور على الماكروس"
+  },
+  "SEARCH": {
+    "PLACEHOLDER": "اكتب حرفين أو أكثر للبحث",
+    "HINT": "ابحث باستخدام رقم المحادثة أو البريد الإلكتروني أو رقم الهاتف أو الرسائل للحصول على نتائج أفضل.",
+    "ALL_RESULTS": "كل النتائج",
+    "RECENT_SEARCHES": "عمليات البحث الأخيرة",
+    "CLEAR_ALL": "مسح الكل",
+    "VIEW_MORE": "عرض المزيد",
+    "TAP_TO_RETRY": "اضغط لإعادة المحاولة",
+    "NO_RESULTS": "لا توجد {{sectionLabel}} مطابقة للبحث '{{searchQuery}}'",
+    "ERROR_CANCELLED": "تعذر تحميل النتائج.",
+    "ERROR_GENERIC": "حدث خطأ ما. يرجى المحاولة مرة أخرى.",
+    "SECTIONS": {
+      "CONTACTS": "جهات الاتصال",
+      "CONVERSATIONS": "المحادثات",
+      "MESSAGES": "الرسائل"
+    }
+  },
+  "COPILOT": {
+    "IMPROVE_REPLY": "تحسين الرد",
+    "CHANGE_TONE": "تغيير النبرة",
+    "FIX_GRAMMAR": "تصحيح القواعد",
+    "SUGGEST_REPLY": "اقتراح رد",
+    "SUMMARIZE": "تلخيص المحادثة",
+    "THINKING": "Copilot يفكر",
+    "FOLLOW_UP_PLACEHOLDER": "أرسل توجيهات إضافية أو متابعة",
+    "SELECT_TONE": "اختر النبرة",
+    "TONE_PROFESSIONAL": "احترافية",
+    "TONE_FRIENDLY": "ودية",
+    "TONE_STRAIGHTFORWARD": "مباشرة",
+    "TONE_CASUAL": "عفوية",
+    "TONE_CONFIDENT": "واثقة",
+    "GENERATION_FAILED": "فشل إنشاء المحتوى. يرجى المحاولة مرة أخرى.",
+    "FOLLOW_UP_FAILED": "فشل إرسال المتابعة. يرجى المحاولة مرة أخرى."
   }
 }

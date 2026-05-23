@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect, useRef } from 'react';
 import { BottomTabBarProps, createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
@@ -85,13 +85,13 @@ const Tabs = () => {
   const userId = useAppSelector(selectUserId);
   const accountId = useAppSelector(selectCurrentUserAccountId);
   const webSocketUrl = useAppSelector(selectWebSocketUrl);
+  const actionCableInitializedRef = useRef(false);
 
   useEffect(() => {
     // Here is the place we are loading all the data for the app first time first time or user switches account
     dispatch(authActions.getProfile());
     dispatch(settingsActions.saveDeviceDetails());
     dispatch(inboxActions.fetchInboxes());
-    initActionCable();
     dispatch(labelActions.fetchLabels());
     dispatch(setCurrentState('none'));
     dispatch(clearSelection());
@@ -127,10 +127,15 @@ const Tabs = () => {
   }, []);
 
   const initActionCable = useCallback(async () => {
-    if (pubSubToken && webSocketUrl && accountId && userId) {
+    if (!actionCableInitializedRef.current && pubSubToken && webSocketUrl && accountId && userId) {
       actionCableConnector.init({ pubSubToken, webSocketUrl, accountId, userId });
+      actionCableInitializedRef.current = true;
     }
   }, [accountId, pubSubToken, userId, webSocketUrl]);
+
+  useEffect(() => {
+    initActionCable();
+  }, [initActionCable]);
 
   useEffect(() => {
     dispatch(settingsActions.getChatwootVersion({ installationUrl: installationUrl }));

@@ -6,11 +6,14 @@ import { useImageDimensions } from '@/hooks/useImageDimensions';
 import type { ImageCellProps, ImageContainerProps } from '@/hooks/useImageDimensions';
 
 export const ImageBubbleContainer = (props: ImageContainerProps) => {
-  const { imageSrc, maxWidth = 300, maxHeight = 360 } = props;
+  const { imageSrc, imageUrls, maxWidth = 300, maxHeight = 360 } = props;
   const imageStyle = useImageDimensions(imageSrc, maxWidth, maxHeight);
+  const galleryUrls = imageUrls?.length
+    ? [imageSrc, ...imageUrls.filter(url => url !== imageSrc)]
+    : [imageSrc];
 
   return (
-    <Galeria urls={[imageSrc]}>
+    <Galeria urls={galleryUrls}>
       <Galeria.Image>
         <Image
           source={{ uri: imageSrc }}
@@ -23,11 +26,11 @@ export const ImageBubbleContainer = (props: ImageContainerProps) => {
 };
 
 export const ImageBubble = (props: ImageCellProps) => {
-  const { imageSrc } = props;
+  const { imageSrc, imageUrls } = props;
 
   return (
     <React.Fragment>
-      <ImageBubbleContainer {...{ imageSrc }} />
+      <ImageBubbleContainer {...{ imageSrc, imageUrls }} />
     </React.Fragment>
   );
 };

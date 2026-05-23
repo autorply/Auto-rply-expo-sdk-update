@@ -12,6 +12,7 @@ import {
   selectPushToken,
   selectWebSocketUrl,
 } from '@/store/settings/settingsSelectors';
+import i18n from '@/i18n';
 
 type DebugActionCellProps = {
   item: DebugAction;
@@ -28,7 +29,7 @@ interface DebugAction {
 const DEBUG_ACTIONS: DebugAction[] = [
   {
     key: 'chatwoot_version',
-    label: 'Chatwoot Version',
+    label: 'Autorply Version',
     value: '',
   },
   {
@@ -61,7 +62,7 @@ const DebugActionCell = ({ item, index, isLastItem }: DebugActionCellProps) => {
     hapticSelection?.();
     if (value) {
       Clipboard.setString(value);
-      showToast({ message: `${item.label} copied to clipboard` });
+      showToast({ message: i18n.t('COMMON.COPIED_TO_CLIPBOARD', { label: item.label }) });
     }
   };
 

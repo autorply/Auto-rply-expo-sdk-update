@@ -16,8 +16,9 @@ import { MAXIMUM_FILE_UPLOAD_SIZE } from '@/constants';
 import i18n from '@/i18n';
 import { showToast } from '@/utils/toastUtils';
 import { findFileSize } from '@/utils/fileUtils';
+import type { AppDispatch } from '@/store';
 
-export const handleOpenPhotosLibrary = async dispatch => {
+export const handleOpenPhotosLibrary = async (dispatch: AppDispatch) => {
   const pickedAssets = await launchImageLibrary({
     quality: 1,
     selectionLimit: 4,
@@ -27,16 +28,15 @@ export const handleOpenPhotosLibrary = async dispatch => {
   if (pickedAssets.didCancel) {
   } else if (pickedAssets.errorCode) {
     Alert.alert(
-      'Permission Denied',
-      pickedAssets.errorMessage ||
-        'The permission to access the photo library has been denied and cannot be requested again. Please enable it in your device settings if you wish to access photos from your library.',
+      i18n.t('COMMON.PERMISSION_DENIED'),
+      pickedAssets.errorMessage || i18n.t('CONVERSATION.PERMISSION.PHOTO_LIBRARY_DENIED'),
       [
         {
-          text: 'Cancel',
+          text: i18n.t('COMMON.CANCEL'),
           style: 'cancel',
         },
         {
-          text: 'Open Settings',
+          text: i18n.t('COMMON.OPEN_SETTINGS'),
           onPress: () => {
             // Open app settings
             Linking.openSettings();
@@ -52,20 +52,20 @@ export const handleOpenPhotosLibrary = async dispatch => {
   }
 };
 
-const handleLaunchCamera = async dispatch => {
+const handleLaunchCamera = async (dispatch: AppDispatch) => {
   request(Platform.OS === 'ios' ? PERMISSIONS.IOS.CAMERA : PERMISSIONS.ANDROID.CAMERA).then(
     async result => {
       if (RESULTS.BLOCKED === result) {
         Alert.alert(
-          'Permission Denied',
-          'The permission to access the camera has been denied and cannot be requested again. Please enable it in your device settings if you wish to use the camera feature.',
+          i18n.t('COMMON.PERMISSION_DENIED'),
+          i18n.t('CONVERSATION.PERMISSION.CAMERA_DENIED'),
           [
             {
-              text: 'Cancel',
+              text: i18n.t('COMMON.CANCEL'),
               style: 'cancel',
             },
             {
-              text: 'Open Settings',
+              text: i18n.t('COMMON.OPEN_SETTINGS'),
               onPress: () => {
                 // Open app settings
                 Linking.openSettings();
@@ -111,7 +111,7 @@ const mapObject = (originalObject: DocumentPickerResponse): Asset[] => {
   ];
 };
 
-const handleAttachFile = async dispatch => {
+const handleAttachFile = async (dispatch: AppDispatch) => {
   try {
     const result = await DocumentPicker.pick({
       type: [
@@ -145,29 +145,33 @@ const handleAttachFile = async dispatch => {
 
 const ADD_MENU_OPTIONS = [
   {
+    key: 'photos',
     icon: <PhotosIcon />,
-    title: 'Photos',
+    title: i18n.t('CONVERSATION.COMMAND_OPTIONS.PHOTOS'),
     handlePress: handleOpenPhotosLibrary,
   },
   {
+    key: 'camera',
     icon: <CameraIcon />,
-    title: 'Camera',
+    title: i18n.t('CONVERSATION.COMMAND_OPTIONS.CAMERA'),
     handlePress: handleLaunchCamera,
   },
   {
+    key: 'attach_file',
     icon: <AttachFileIcon />,
-    title: 'Attach File',
+    title: i18n.t('CONVERSATION.COMMAND_OPTIONS.ATTACH_FILE'),
     handlePress: handleAttachFile,
   },
   {
+    key: 'macros',
     icon: <MacrosIcon />,
-    title: 'Macros',
+    title: i18n.t('CONVERSATION.COMMAND_OPTIONS.MACROS'),
     handlePress: () => {},
   },
 ];
 
-export const validateFileAndSetAttachments = async (dispatch, attachment) => {
-  const { fileSize } = attachment;
+export const validateFileAndSetAttachments = async (dispatch: AppDispatch, attachment: Asset) => {
+  const fileSize = attachment.fileSize ?? 0;
   if (findFileSize(fileSize) <= MAXIMUM_FILE_UPLOAD_SIZE) {
     dispatch(updateAttachments([attachment]));
   } else {
@@ -191,7 +195,7 @@ const MenuOption = (props: MenuOptionProps) => {
   const handlePress = () => {
     hapticSelection?.();
     menuOption?.handlePress(dispatch);
-    if (menuOption.title === 'Macros') {
+    if (menuOption.key === 'macros') {
       macrosListSheetRef.current?.present();
     }
   };

@@ -13,6 +13,7 @@ import { Spinner } from '@/components-next/spinner';
 import { MenuOption, MessageMenu } from '../message-menu';
 import { MESSAGE_TYPES } from '@/constants';
 import { DeliveryStatus } from './DeliveryStatus';
+import i18n from '@/i18n';
 
 type FilePreviewProps = Pick<FileCellProps, 'fileSrc'> & {
   isIncoming: boolean;
@@ -32,7 +33,7 @@ export const FilePreview = (props: FilePreviewProps) => {
     try {
       FileViewer.open(localFilePath).catch(e => Alert.alert(e));
     } catch (e) {
-      Alert.alert('Not able to preview file' + e);
+      Alert.alert(`${i18n.t('CONVERSATION.FILE_PREVIEW_ERROR')}: ${e}`);
     }
   };
 
@@ -53,7 +54,7 @@ export const FilePreview = (props: FilePreviewProps) => {
               setFileDownload(false);
             })
             .catch(() => {
-              Alert.alert('File load error');
+              Alert.alert(i18n.t('CONVERSATION.FILE_LOAD_ERROR'));
             });
         }
       });

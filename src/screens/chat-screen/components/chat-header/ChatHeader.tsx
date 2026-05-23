@@ -4,7 +4,7 @@ import { BottomSheetModal, useBottomSheetSpringConfigs } from '@gorhom/bottom-sh
 import Animated from 'react-native-reanimated';
 
 import { Avatar, Icon } from '@/components-next';
-import { ChevronLeft, OpenIcon, Overflow, ResolvedIcon, SLAIcon } from '@/svg-icons';
+import { ChatIcon, ChevronLeft, LoadingIcon, Overflow, SLAIcon, TickIcon } from '@/svg-icons';
 import { BottomSheetBackdrop, BottomSheetWrapper } from '@/components-next';
 import { tailwind } from '@/theme';
 import { ChatDropdownMenu, DashboardList } from './DropdownMenu';
@@ -23,6 +23,7 @@ type ChatHeaderProps = {
   statusText?: string;
   onBackPress: () => void;
   onContactDetailsPress: () => void;
+  onRefreshPress: () => void;
   onToggleChatStatus: () => void;
 };
 
@@ -37,6 +38,7 @@ export const ChatHeader = ({
   dashboardsList,
   onBackPress,
   onContactDetailsPress,
+  onRefreshPress,
   onToggleChatStatus,
 }: ChatHeaderProps) => {
   const { slaEventsSheetRef } = useRefsContext();
@@ -90,13 +92,16 @@ export const ChatHeader = ({
                 <Icon icon={<SLAIcon color={isSlaMissed ? '#E13D45' : '#BBBBBB'} />} size={24} />
               </Pressable>
             )}
+            <Pressable hitSlop={8} onPress={onRefreshPress}>
+              <Icon icon={<LoadingIcon stroke={tailwind.color('text-gray-700')} />} size={24} />
+            </Pressable>
             <Pressable hitSlop={8} onPress={onToggleChatStatus}>
               <Icon
                 icon={
                   isResolved ? (
-                    <ResolvedIcon strokeWidth={2} stroke={tailwind.color('bg-green-700')} />
+                    <ChatIcon strokeWidth={2} stroke={tailwind.color('text-gray-700')} />
                   ) : (
-                    <OpenIcon strokeWidth={2} />
+                    <TickIcon stroke={tailwind.color('bg-green-700')} />
                   )
                 }
                 size={24}

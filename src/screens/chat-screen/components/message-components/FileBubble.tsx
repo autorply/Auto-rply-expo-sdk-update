@@ -9,6 +9,7 @@ import { tailwind } from '@/theme';
 import { Icon } from '@/components-next/common';
 import { Spinner } from '@/components-next/spinner';
 import { MESSAGE_VARIANTS } from '@/constants';
+import i18n from '@/i18n';
 
 const generateUniqueFileName = (url: string, originalFileName: string) => {
   const hash = url.split('').reduce((acc, char) => {
@@ -43,7 +44,7 @@ export const FileBubblePreview = (props: FilePreviewProps) => {
     try {
       FileViewer.open(localFilePath).catch(e => Alert.alert(e));
     } catch (e) {
-      Alert.alert('Not able to preview file' + e);
+      Alert.alert(`${i18n.t('CONVERSATION.FILE_PREVIEW_ERROR')}: ${e}`);
     }
   };
 
@@ -64,7 +65,7 @@ export const FileBubblePreview = (props: FilePreviewProps) => {
               setFileDownload(false);
             })
             .catch(() => {
-              Alert.alert('File load error');
+              Alert.alert(i18n.t('CONVERSATION.FILE_LOAD_ERROR'));
             });
         }
       });

@@ -9,6 +9,7 @@ import { tailwind } from '@/theme';
 import { AttributeListType } from '@/types';
 import { Icon } from '@/components-next/common';
 import { showToast } from '@/utils/toastUtils';
+import i18n from '@/i18n';
 
 type AttributeItemProps = {
   listItem: AttributeListType;
@@ -23,7 +24,7 @@ const AttributeItem = (props: AttributeItemProps) => {
     if (formattedValue) {
       try {
         Clipboard.setString(formattedValue);
-        showToast({ message: `${listItem.title} copied to clipboard` });
+        showToast({ message: i18n.t('COMMON.COPIED_TO_CLIPBOARD', { label: listItem.title }) });
       } catch (error) {
         Sentry.captureException(error);
       }

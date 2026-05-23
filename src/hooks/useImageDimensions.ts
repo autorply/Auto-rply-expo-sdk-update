@@ -3,20 +3,17 @@ import { Image as RNImage } from 'react-native';
 
 export type ImageCellProps = {
   imageSrc: string;
+  imageUrls?: string[];
 };
 
-export type ImageContainerProps = Pick<ImageCellProps, 'imageSrc'> & {
+export type ImageContainerProps = Pick<ImageCellProps, 'imageSrc' | 'imageUrls'> & {
   maxWidth?: number;
   maxHeight?: number;
 };
 
 const imageDimensionsCache = new Map<string, { width: number; height: number }>();
 
-export const useImageDimensions = (
-  imageSrc: string,
-  maxWidth = 300,
-  maxHeight = 360,
-) => {
+export const useImageDimensions = (imageSrc: string, maxWidth = 300, maxHeight = 360) => {
   const [imageDimensions, setImageDimensions] = useState<{ width: number; height: number } | null>(
     null,
   );

@@ -37,11 +37,11 @@ export function checkServerSupport({ installedVersion, userRole }: ServerSupport
       Alert.alert(
         I18n.t('SERVER_UPGRADE.TITLE'),
         I18n.t('SERVER_UPGRADE.WARNING_FOR_ADMIN', { minimumVersion }),
-        [{ text: 'OK' }],
+        [{ text: I18n.t('COMMON.OK') }],
       );
     } else {
       Alert.alert(I18n.t('SERVER_UPGRADE.TITLE'), I18n.t('SERVER_UPGRADE.WARNING_FOR_AGENT'), [
-        { text: 'OK' },
+        { text: I18n.t('COMMON.OK') },
       ]);
     }
   }

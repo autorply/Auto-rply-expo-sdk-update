@@ -45,48 +45,48 @@ type ContactDetailsScreenProps = NativeStackScreenProps<
 const allSocialMediaProfiles: GenericListType[] = [
   {
     icon: <MessengerFilledIcon />,
-    subtitle: 'Facebook',
-    title: 'Facebook',
+    subtitle: 'CONTACT_DETAILS.FACEBOOK',
+    title: 'CONTACT_DETAILS.FACEBOOK',
     subtitleType: 'dark',
     key: 'facebook',
     link: 'https://fb.com/',
   },
   {
     icon: <XFilledIcon />,
-    subtitle: 'Twitter',
-    title: 'Twitter',
+    subtitle: 'CONTACT_DETAILS.TWITTER',
+    title: 'CONTACT_DETAILS.TWITTER',
     subtitleType: 'dark',
     key: 'twitter',
     link: 'https://x.com/',
   },
   {
     icon: <GithubIcon />,
-    subtitle: 'Github',
-    title: 'Github',
+    subtitle: 'CONTACT_DETAILS.GITHUB',
+    title: 'CONTACT_DETAILS.GITHUB',
     subtitleType: 'dark',
     key: 'github',
     link: 'https://github.com/',
   },
   {
     icon: <LinkedinIcon />,
-    subtitle: 'Linkedin',
-    title: 'Linkedin',
+    subtitle: 'CONTACT_DETAILS.LINKEDIN',
+    title: 'CONTACT_DETAILS.LINKEDIN',
     subtitleType: 'dark',
     key: 'linkedin',
     link: 'https://linkedin.com/',
   },
   {
     icon: <InstagramFilledIcon />,
-    subtitle: 'Instagram',
-    title: 'Instagram',
+    subtitle: 'CONTACT_DETAILS.INSTAGRAM',
+    title: 'CONTACT_DETAILS.INSTAGRAM',
     subtitleType: 'dark',
     key: 'instagram',
     link: 'https://instagram/',
   },
   {
     icon: <TelegramFilledIcon />,
-    subtitle: 'Telegram',
-    title: 'Telegram',
+    subtitle: 'CONTACT_DETAILS.TELEGRAM',
+    title: 'CONTACT_DETAILS.TELEGRAM',
     subtitleType: 'dark',
     key: 'telegram',
     link: 'https://t.me/',
@@ -188,35 +188,35 @@ const ContactDetailsScreen = (props: ContactDetailsScreenProps) => {
     .map(profile => ({
       ...profile,
       subtitle: `${profile.link}${socialMediaProfiles?.[profile.key as keyof typeof socialMediaProfiles]}`,
+      title: i18n.t(profile.title as string),
       type: 'link',
     }));
 
-  const fullLocation =
-    location || [city, country].filter(Boolean).join(', ') || null;
+  const fullLocation = location || [city, country].filter(Boolean).join(', ') || null;
 
   const userDetails: GenericListType[] = [
     {
       icon: <LocationIcon />,
       subtitle: fullLocation || i18n.t('CONTACT_DETAILS.VALUE_UNAVAILABLE'),
-      title: 'Location',
+      title: i18n.t('CONTACT_DETAILS.LOCATION'),
       subtitleType: 'dark',
     },
     {
       icon: <CallIcon />,
       subtitle: phoneNumber || i18n.t('CONTACT_DETAILS.VALUE_UNAVAILABLE'),
-      title: 'Phone',
+      title: i18n.t('CONTACT_DETAILS.PHONE'),
       subtitleType: 'dark',
     },
     {
       icon: <EmailIcon />,
       subtitle: email || i18n.t('CONTACT_DETAILS.VALUE_UNAVAILABLE'),
-      title: 'Email',
+      title: i18n.t('CONTACT_DETAILS.EMAIL'),
       subtitleType: 'dark',
     },
     {
       icon: <CompanyIcon />,
       subtitle: companyName || i18n.t('CONTACT_DETAILS.VALUE_UNAVAILABLE'),
-      title: 'Company',
+      title: i18n.t('CONTACT_DETAILS.COMPANY'),
       subtitleType: 'dark',
     },
   ];

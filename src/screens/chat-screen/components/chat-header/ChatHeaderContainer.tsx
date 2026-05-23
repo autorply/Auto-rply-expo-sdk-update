@@ -132,6 +132,13 @@ export const ChatHeaderContainer = (props: ChatScreenHeaderProps) => {
     });
   };
 
+  const refreshConversation = async () => {
+    await dispatch(conversationActions.fetchPreviousMessages({ conversationId }));
+    showToast({
+      message: i18n.t('CONVERSATION.REFRESHED'),
+    });
+  };
+
   const dashboardRoutes = dashboardApps.map(dashboardApp => ({
     title: dashboardApp.title,
     url: dashboardApp.content[0].url,
@@ -142,7 +149,7 @@ export const ChatHeaderContainer = (props: ChatScreenHeaderProps) => {
     return [
       pagerViewIndex === 0
         ? {
-            title: 'Conversation Actions',
+            title: i18n.t('CONVERSATION.ACTIONS_TITLE'),
             onSelect: handleNavigation,
           }
         : undefined,
@@ -170,6 +177,7 @@ export const ChatHeaderContainer = (props: ChatScreenHeaderProps) => {
       statusText={`${sLAStatusText()}: ${slaStatus?.threshold}`}
       onBackPress={handleBackPress}
       onContactDetailsPress={handleNavigationToContactDetails}
+      onRefreshPress={refreshConversation}
       onToggleChatStatus={toggleChatStatus}
     />
   );

@@ -4,7 +4,12 @@
     "ERROR": "Error",
     "ERROR_TITLE": "Unexpected error occurred",
     "REPORT_MESSAGE": "We have reported this to our team ! Please close the app and start again!",
-    "CLOSE": "Close"
+    "CLOSE": "Close",
+    "OK": "OK",
+    "CANCEL": "Cancel",
+    "OPEN_SETTINGS": "Open Settings",
+    "PERMISSION_DENIED": "Permission Denied",
+    "COPIED_TO_CLIPBOARD": "{{label}} copied to clipboard"
   },
   "FOOTER": {
     "HOME": "Home",
@@ -146,6 +151,23 @@
     "ALL_CONVERSATION_LOADED": "All conversations loaded",
     "ASSIGN": "Assign conversation",
     "FILE_SIZE_LIMIT": "File exceeds the 5MB attachment limit",
+    "REFRESHED": "Conversation updated",
+    "ACTIONS_TITLE": "Conversation actions",
+    "MENU_TITLE": "Select action",
+    "MARK_AS_OPEN": "Reopen conversation",
+    "EMAIL_PLACEHOLDER": "Emails separated by commas",
+    "FILE_PREVIEW_ERROR": "Unable to preview file",
+    "FILE_LOAD_ERROR": "Unable to load file",
+    "COMMAND_OPTIONS": {
+      "PHOTOS": "Photos",
+      "CAMERA": "Camera",
+      "ATTACH_FILE": "Attach File",
+      "MACROS": "Macros"
+    },
+    "PERMISSION": {
+      "PHOTO_LIBRARY_DENIED": "Photo library permission has been denied. Enable it in your device settings.",
+      "CAMERA_DENIED": "Camera permission has been denied. Enable it in your device settings."
+    },
     "SHARE": "Share",
     "DETAILS": "Details",
     "LABELS": "Conversation labels",
@@ -163,7 +185,8 @@
     "EMAIL_HEAD": {
       "TO": "To",
       "CC": "Cc",
-      "BCC": "Bcc"
+      "BCC": "Bcc",
+      "PLACEHOLDER": "Emails separated by commas"
     },
     "SELF_ASSIGN": "Assign to me",
     "UN_ASSIGN": "Unassign conversation",
@@ -178,6 +201,7 @@
     "MESSAGES": "Messages",
     "UNDEFINED_VARIABLES_TITLE": "Undefined variables",
     "UNDEFINED_VARIABLES_CLOSE": "Close",
+    "UNDEFINED_VARIABLES_MESSAGE": "You have %{count} undefined variable(s) in your message: %{variables}. Please check and try again with valid variables.",
     "DELETE_MESSAGE_TITLE": "Are you sure you want to delete this message?",
     "DELETE_MESSAGE_SUB_TITLE": "This action cannot be undone.",
     "COPY_MESSAGE": "Message copied to clipboard",
@@ -374,6 +398,15 @@
     "TITLE": "Contact Details",
     "EMAIL": "Email",
     "PHONE_NUMBER": "Phone Number",
+    "PHONE": "Phone",
+    "LOCATION": "Location",
+    "COMPANY": "Company",
+    "FACEBOOK": "Facebook",
+    "TWITTER": "Twitter",
+    "GITHUB": "Github",
+    "LINKEDIN": "Linkedin",
+    "INSTAGRAM": "Instagram",
+    "TELEGRAM": "Telegram",
     "CALL": "Call",
     "CONTACT_ATTRIBUTES": "Contact Attributes",
     "VALUE_UNAVAILABLE": "Unavailable"
@@ -396,7 +429,8 @@
     "TITLE": "Contact Attributes"
   },
   "CONVERSATION_ACTION": {
-    "TITLE": "Actions"
+    "TITLE": "Actions",
+    "SELECT_ACTION": "Select action"
   },
   "CONVERSATION_TEAMS": {
     "TITLE": "Assign team",

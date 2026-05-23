@@ -62,6 +62,15 @@ export const ComposedBubble = (props: ComposedBubbleProps) => {
   const isAnInstagramStory = imageType === ATTACHMENT_TYPES.STORY_MENTION;
   const isInstagramStoryExpired = isMessageCreatedAtLessThan24HoursOld(createdAt);
   const isMessageSending = status === MESSAGE_STATUS.PROGRESS;
+  const conversationImageUrls = useMemo(
+    () =>
+      messages.flatMap(message =>
+        (message.attachments || [])
+          .filter(attachment => attachment.fileType === ATTACHMENT_TYPES.IMAGE)
+          .map(attachment => attachment.dataUrl),
+      ),
+    [messages],
+  );
 
   return (
     <Animated.View style={tailwind.style('flex flex-row')}>
@@ -97,6 +106,7 @@ export const ComposedBubble = (props: ComposedBubbleProps) => {
                 <Animated.View key={attachment.fileType + index} style={tailwind.style('my-2')}>
                   <ImageBubbleContainer
                     imageSrc={attachment.dataUrl}
+                    imageUrls={conversationImageUrls}
                     maxWidth={300 - 24 - (isPrivate ? 13 : 0)}
                   />
                 </Animated.View>
