@@ -5,10 +5,22 @@ import type {
   UpdateContactLabelsPayload,
   ContactConversationAPIResponse,
   ContactConversationPayload,
+  ContactsListAPIResponse,
+  ContactsListPayload,
 } from './contactTypes';
-import { transformConversation } from '@/utils/camelCaseKeys';
+import { transformContact, transformConversation } from '@/utils/camelCaseKeys';
 
 export class ContactService {
+  static async getContacts(payload: ContactsListPayload = {}): Promise<ContactsListAPIResponse> {
+    const { page = 1 } = payload;
+    const response = await apiService.get<ContactsListAPIResponse>(`contacts?page=${page}`);
+    const transformedContacts = response.data.payload.map(transformContact);
+    return {
+      ...response.data,
+      payload: transformedContacts,
+    };
+  }
+
   static async getContactLabels(payload: ContactLabelsPayload) {
     const { contactId } = payload;
     const response = await apiService.get<ContactLabelsAPIResponse>(`contacts/${contactId}/labels`);

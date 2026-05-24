@@ -321,12 +321,18 @@
     "CHANGE_LANGUAGE": "تغيير اللغة",
     "NOTIFICATIONS": "الإشعارات",
     "NOTIFICATION_PREFERENCES": "تفضيلات الإشعارات",
-    "READ_DOCS": "اقرأ التوثيق",
+    "READ_DOCS": "مركز  المساعدة",
     "CHAT_WITH_US": "تحدث إلينا",
     "LOGOUT": "تسجيل الخروج",
     "SUBMIT": "إرسال",
     "SET_LANGUAGE": "اختيار اللغة",
     "DEBUG_ACTIONS": "إجراءات التصحيح"
+  },
+  "CONTACTS": {
+    "TITLE": "جهات الاتصال",
+    "EMPTY": "لا توجد جهات اتصال.",
+    "ERROR": "تعذر تحميل جهات الاتصال.",
+    "REFRESH": "تحديث"
   },
   "NOTIFICATION": {
     "HEADER_TITLE": "الإشعارات",

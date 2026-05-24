@@ -14,6 +14,8 @@ import { selectCurrentState } from '@/store/conversation/conversationHeaderSlice
 import {
   ConversationIconFilled,
   ConversationIconOutline,
+  ContactsIconFilled,
+  ContactsIconOutline,
   InboxIconFilled,
   InboxIconOutline,
   SettingsIconFilled,
@@ -41,6 +43,8 @@ const TabBarIcons = ({ focused, route }: TabBarIconsProps) => {
       return focused ? <ConversationIconFilled /> : <ConversationIconOutline />;
     case 'Inbox':
       return focused ? <InboxIconFilled /> : <InboxIconOutline />;
+    case 'Contacts':
+      return focused ? <ContactsIconFilled /> : <ContactsIconOutline />;
     case 'Settings':
       return focused ? <SettingsIconFilled /> : <SettingsIconOutline />;
   }

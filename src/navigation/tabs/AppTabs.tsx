@@ -19,7 +19,7 @@ import { selectWebSocketUrl } from '@/store/settings/settingsSelectors';
 import { getUserPermissions } from '@/utils/permissionUtils';
 import { CONVERSATION_PERMISSIONS } from 'constants/permissions';
 
-import { AuthStack, ConversationStack, SettingsStack, InboxStack } from '../stack';
+import { AuthStack, ConversationStack, ContactsStack, SettingsStack, InboxStack } from '../stack';
 import ChatScreen from '@/screens/chat-screen/ChatScreen';
 import ContactDetailsScreen from '@/screens/contact-details/ContactDetailsScreen';
 import DashboardScreen from '@/screens/dashboard/DashboardScreen';
@@ -39,12 +39,14 @@ import { clearAllDeliveredNotifications } from '@/utils/pushUtils';
 import { dashboardAppActions } from '@/store/dashboard-app/dashboardAppActions';
 import { customAttributeActions } from '@/store/custom-attribute/customAttributeActions';
 import { clearSelection } from '@/store/conversation/conversationSelectedSlice';
+import i18n from '@/i18n';
 
 const Tab = createBottomTabNavigator();
 
 export type TabParamList = {
   Conversations: undefined;
   Inbox: undefined;
+  Contacts: undefined;
   Settings: undefined;
   Login: undefined;
   ConfigInstallationURL: undefined;
@@ -175,6 +177,14 @@ const Tabs = () => {
           component={ConversationStack}
         />
       )}
+      <Tab.Screen
+        name="Contacts"
+        options={{
+          headerShown: false,
+          tabBarAccessibilityLabel: i18n.t('CONTACTS.TITLE'),
+        }}
+        component={ContactsStack}
+      />
       <Tab.Screen name="Settings" options={{ headerShown: false }} component={SettingsStack} />
     </Tab.Navigator>
   );

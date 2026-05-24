@@ -328,6 +328,12 @@
     "SET_LANGUAGE": "Set Language",
     "DEBUG_ACTIONS": "Debug Actions"
   },
+  "CONTACTS": {
+    "TITLE": "Contacts",
+    "EMPTY": "No contacts found.",
+    "ERROR": "Couldn't load contacts.",
+    "REFRESH": "Refresh"
+  },
   "NOTIFICATION": {
     "HEADER_TITLE": "Notifications",
     "INBOX": "Inbox",
