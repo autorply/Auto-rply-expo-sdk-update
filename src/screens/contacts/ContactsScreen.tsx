@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { ActivityIndicator, Pressable, RefreshControl, StatusBar } from 'react-native';
 import Animated from 'react-native-reanimated';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -32,6 +32,7 @@ const ContactsScreen = () => {
   const [hasError, setHasError] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [hasMore, setHasMore] = useState(false);
+  const inFlightPageRef = useRef<number | null>(null);
 
   const getUpdatedContacts = useCallback(
     (previousContacts: Contact[], nextContacts: Contact[], isRefresh: boolean) => {
@@ -49,6 +50,10 @@ const ContactsScreen = () => {
 
   const fetchContacts = useCallback(
     async (page: number, isRefresh = false) => {
+      if (inFlightPageRef.current === page) {
+        return;
+      }
+      inFlightPageRef.current = page;
       if (isRefresh) {
         setIsRefreshing(true);
       } else if (page > 1) {
@@ -65,16 +70,21 @@ const ContactsScreen = () => {
 
         setContacts(prevContacts => {
           const updatedContacts = getUpdatedContacts(prevContacts, nextContacts, isRefresh);
-          const totalCount = meta?.count || 0;
-          setHasMore(updatedContacts.length < totalCount);
+          const totalCount = Number(meta?.count);
+          const hasValidTotalCount = Number.isFinite(totalCount) && totalCount > 0;
+          setHasMore(hasValidTotalCount ? updatedContacts.length < totalCount : nextContacts.length > 0);
           return updatedContacts;
         });
 
         dispatch(addContacts({ contacts: nextContacts }));
-        setCurrentPage(meta?.current_page || page);
+        const parsedCurrentPage = Number.parseInt(String(meta?.current_page ?? page), 10);
+        setCurrentPage(Number.isFinite(parsedCurrentPage) && parsedCurrentPage > 0 ? parsedCurrentPage : page);
       } catch {
         setHasError(true);
       } finally {
+        if (inFlightPageRef.current === page) {
+          inFlightPageRef.current = null;
+        }
         setIsLoading(false);
         setIsRefreshing(false);
         setIsLoadingMore(false);
@@ -95,7 +105,11 @@ const ContactsScreen = () => {
     if (isLoading || isRefreshing || isLoadingMore || !hasMore) {
       return;
     }
-    fetchContacts(currentPage + 1);
+    const nextPage = currentPage + 1;
+    if (inFlightPageRef.current === nextPage) {
+      return;
+    }
+    fetchContacts(nextPage);
   }, [currentPage, fetchContacts, hasMore, isLoading, isLoadingMore, isRefreshing]);
 
   const handlePressContact = useCallback(

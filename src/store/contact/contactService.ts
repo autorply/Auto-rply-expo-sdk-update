@@ -13,7 +13,9 @@ import { transformContact, transformConversation } from '@/utils/camelCaseKeys';
 export class ContactService {
   static async getContacts(payload: ContactsListPayload = {}): Promise<ContactsListAPIResponse> {
     const { page = 1 } = payload;
-    const response = await apiService.get<ContactsListAPIResponse>(`contacts?page=${page}`);
+    const response = await apiService.get<ContactsListAPIResponse>(
+      `contacts?page=${page}&sort=-last_activity_at`,
+    );
     const transformedContacts = response.data.payload.map(transformContact);
     return {
       ...response.data,
