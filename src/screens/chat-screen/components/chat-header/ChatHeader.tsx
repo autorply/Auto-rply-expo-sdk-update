@@ -4,7 +4,7 @@ import { BottomSheetModal, useBottomSheetSpringConfigs } from '@gorhom/bottom-sh
 import Animated from 'react-native-reanimated';
 
 import { Avatar, Icon } from '@/components-next';
-import { ChatIcon, ChevronLeft, LoadingIcon, Overflow, SLAIcon, TickIcon } from '@/svg-icons';
+import { ChatIcon, ChevronLeft, Overflow, RefreshIcon, SLAIcon, TickIcon } from '@/svg-icons';
 import { BottomSheetBackdrop, BottomSheetWrapper } from '@/components-next';
 import { tailwind } from '@/theme';
 import { ChatDropdownMenu, DashboardList } from './DropdownMenu';
@@ -93,7 +93,7 @@ export const ChatHeader = ({
               </Pressable>
             )}
             <Pressable hitSlop={8} onPress={onRefreshPress}>
-              <Icon icon={<LoadingIcon stroke={tailwind.color('text-gray-700')} />} size={24} />
+              <Icon icon={<RefreshIcon stroke={tailwind.color('text-gray-700')} />} size={24} />
             </Pressable>
             <Pressable hitSlop={8} onPress={onToggleChatStatus}>
               <Icon

@@ -27,6 +27,7 @@ export * from './Mail';
 export * from './Overflow';
 export * from './Phone';
 export * from './Priority';
+export * from './Refresh';
 export * from './Search';
 export * from './SendIcon';
 export * from './Tick';
