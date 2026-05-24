@@ -71,9 +71,7 @@ import { useAppDispatch, useAppSelector } from '@/hooks';
 
 const appName = Application.applicationName;
 const appVersion = Application.nativeApplicationVersion;
-
-const buildNumber = Application.nativeBuildVersion;
-const appVersionDetails = buildNumber ? `${appVersion} (${buildNumber})` : appVersion;
+const appVersionDetails = appVersion;
 const SUPPORT_CHAT_URL = 'https://autorply.sa/chat/';
 
 const SettingsScreen = () => {
