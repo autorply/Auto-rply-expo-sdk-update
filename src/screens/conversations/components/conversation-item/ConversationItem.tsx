@@ -84,44 +84,49 @@ export const ConversationItem = memo(
     typingText,
   }: ConversationItemProps) => {
     const isRTL = I18nManager.isRTL;
+    const avatarSection = (
+      <NativeView style={tailwind.style('py-3 flex flex-row')}>
+        <ConversationSelect {...{ isSelected, currentState }} />
+        <ConversationAvatar
+          src={{ uri: senderThumbnail } as ImageURISource}
+          name={senderName || ''}
+          status={isTyping ? 'typing' : availabilityStatus || 'offline'}
+        />
+      </NativeView>
+    );
+
+    const detailSection = (
+      <ConversationItemDetail
+        {...{
+          id,
+          priority: priority,
+          unreadCount,
+          labels,
+          assignee,
+          senderName,
+          timestamp,
+          inbox,
+          lastMessage,
+          inboxId,
+          appliedSla,
+          appliedSlaConversationDetails,
+          additionalAttributes,
+          slaPolicyId,
+          currentState,
+          allLabels,
+          typingText,
+        }}
+      />
+    );
 
     return (
       <NativeView
         style={tailwind.style(
           'px-3 gap-3 justify-between',
           isRTL ? 'flex-row-reverse' : 'flex-row',
-        )}
-      >
-        <NativeView style={tailwind.style('py-3 flex', isRTL ? 'flex-row-reverse' : 'flex-row')}>
-          <ConversationSelect {...{ isSelected, currentState }} />
-          <ConversationAvatar
-            src={{ uri: senderThumbnail } as ImageURISource}
-            name={senderName || ''}
-            status={isTyping ? 'typing' : availabilityStatus || 'offline'}
-          />
-        </NativeView>
-
-        <ConversationItemDetail
-          {...{
-            id,
-            priority: priority,
-            unreadCount,
-            labels,
-            assignee,
-            senderName,
-            timestamp,
-            inbox,
-            lastMessage,
-            inboxId,
-            appliedSla,
-            appliedSlaConversationDetails,
-            additionalAttributes,
-            slaPolicyId,
-            currentState,
-            allLabels,
-            typingText,
-          }}
-        />
+        )}>
+        {avatarSection}
+        {detailSection}
       </NativeView>
     );
   },

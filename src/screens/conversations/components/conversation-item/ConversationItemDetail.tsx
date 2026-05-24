@@ -80,6 +80,36 @@ export const ConversationItemDetail = memo((props: ConversationDetailSubCellProp
 
   const hasSLA = !!slaPolicyId && shouldShowSLA;
 
+  const headerIdentitySection = (
+    <AnimatedNativeView
+      style={tailwind.style(
+        'flex items-center gap-[5px] flex-1',
+        isRTL ? 'flex-row-reverse justify-end' : 'flex-row',
+      )}>
+      <Text
+        numberOfLines={1}
+        style={tailwind.style(
+          'text-base font-inter-medium-24 tracking-[0.24px] leading-[24px] text-gray-950 capitalize',
+          isRTL ? 'text-right' : 'text-left',
+          // Calculated based on the widths of other content,
+          // We might have to do a 10-20px offset based on the max width of the timestamp
+          `max-w-[${width - 250}px]`,
+        )}>
+        {senderName}
+      </Text>
+      <ConversationId id={conversationId} />
+    </AnimatedNativeView>
+  );
+
+  const headerMetaSection = (
+    <AnimatedNativeView
+      style={tailwind.style('flex items-center gap-2', isRTL ? 'flex-row-reverse' : 'flex-row')}>
+      {hasPriority ? <PriorityIndicator {...{ priority }} /> : null}
+      {inbox && <ChannelIndicator inbox={inbox} additionalAttributes={additionalAttributes} />}
+      <LastActivityTime timestamp={timestamp} />
+    </AnimatedNativeView>
+  );
+
   if (!lastMessage) {
     return null;
   }
@@ -89,37 +119,18 @@ export const ConversationItemDetail = memo((props: ConversationDetailSubCellProp
       layout={LinearTransition.springify().damping(28).stiffness(200)}
       style={tailwind.style('flex-1 gap-1 py-3 border-b-[1px] border-b-blackA-A3')}>
       <AnimatedNativeView
-        style={tailwind.style(
-          'flex justify-between items-center min-h-[26px]',
-          isRTL ? 'flex-row-reverse' : 'flex-row',
-        )}>
-        <AnimatedNativeView
-          style={tailwind.style(
-            'flex items-center gap-[5px] flex-1',
-            isRTL ? 'flex-row-reverse justify-end' : 'flex-row',
-          )}>
-          <Text
-            numberOfLines={1}
-            style={tailwind.style(
-              'text-base font-inter-medium-24 tracking-[0.24px] leading-[24px] text-gray-950 capitalize',
-              isRTL ? 'text-right' : 'text-left',
-              // Calculated based on the widths of other content,
-              // We might have to do a 10-20px offset based on the max width of the timestamp
-              `max-w-[${width - 250}px]`,
-            )}>
-            {senderName}
-          </Text>
-          <ConversationId id={conversationId} />
-        </AnimatedNativeView>
-        <AnimatedNativeView
-          style={tailwind.style(
-            'flex items-center gap-2',
-            isRTL ? 'flex-row-reverse' : 'flex-row',
-          )}>
-          {hasPriority ? <PriorityIndicator {...{ priority }} /> : null}
-          {inbox && <ChannelIndicator inbox={inbox} additionalAttributes={additionalAttributes} />}
-          <LastActivityTime timestamp={timestamp} />
-        </AnimatedNativeView>
+        style={tailwind.style('flex justify-between items-center min-h-[26px] flex-row')}>
+        {isRTL ? (
+          <>
+            {headerMetaSection}
+            {headerIdentitySection}
+          </>
+        ) : (
+          <>
+            {headerIdentitySection}
+            {headerMetaSection}
+          </>
+        )}
       </AnimatedNativeView>
       {hasLabels || hasSLA ? (
         <AnimatedNativeView style={tailwind.style('flex flex-col items-center gap-1')}>
