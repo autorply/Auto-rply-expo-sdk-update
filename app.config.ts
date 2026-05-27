@@ -1,4 +1,38 @@
 import { ConfigContext, ExpoConfig } from 'expo/config';
+import { ConfigPlugin, withAndroidManifest } from 'expo/config-plugins';
+
+const optionalAndroidFeatures = [
+  'android.hardware.camera',
+  'android.hardware.camera.any',
+  'android.hardware.camera.autofocus',
+  'android.hardware.microphone',
+];
+
+const withOptionalAndroidHardwareFeatures: ConfigPlugin = config => {
+  return withAndroidManifest(config, config => {
+    const manifest = config.modResults.manifest;
+    manifest['uses-feature'] = manifest['uses-feature'] || [];
+
+    optionalAndroidFeatures.forEach(featureName => {
+      const existingFeature = manifest['uses-feature']?.find(
+        feature => feature.$?.['android:name'] === featureName
+      );
+
+      if (existingFeature) {
+        existingFeature.$['android:required'] = 'false';
+      } else {
+        manifest['uses-feature']?.push({
+          $: {
+            'android:name': featureName,
+            'android:required': 'false',
+          },
+        });
+      }
+    });
+
+    return config;
+  });
+};
 
 export default ({ config }: ConfigContext): ExpoConfig => {
   return {
@@ -102,6 +136,7 @@ export default ({ config }: ConfigContext): ExpoConfig => {
         },
       ],
       './with-ffmpeg-pod.js',
+      withOptionalAndroidHardwareFeatures,
     ],
     androidNavigationBar: { backgroundColor: '#ffffff' },
   };
