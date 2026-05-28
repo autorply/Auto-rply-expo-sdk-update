@@ -111,6 +111,7 @@ export default ({ config }: ConfigContext): ExpoConfig => {
     owner: 'auto-team',
     plugins: [
       'expo-font',
+      '@react-native-community/datetimepicker',
       ['react-native-permissions', { iosPermissions: ['Camera', 'PhotoLibrary', 'MediaLibrary'] }],
       [
         '@sentry/react-native/expo',
